@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+<meta name="theme-color" content="#000000" />
+<title>Reader · lectura diaria curada</title>
+<meta name="description" content="Cada día, entre 10 y 20 noticias que merece la pena leer enteras. Curadas por Claude." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📰</text></svg>" />
+<style>
+  :root{
+    --bg:#000;
+    --ink:#f5f3ee;
+    --muted:rgba(245,243,238,.62);
+    --accent:#ff6a3d;             /* fallback accent */
+    --accent-tech:#5ac8fa;
+    --accent-ciencia:#34c759;
+    --accent-longform:#ffae42;
+    --paper:#f7f5f0;
+    --paper-ink:#16140f;
+    --paper-muted:#5d564a;
+    --safe-t:env(safe-area-inset-top,0px);
+    --safe-b:env(safe-area-inset-bottom,0px);
+  }
+
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0;height:100%;background:var(--bg);color:var(--ink)}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    overscroll-behavior:none;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow:hidden;
+  }
+  img{display:block}
+  a{color:inherit}
+
+  /* ───────────────────────── DECK (home) ───────────────────────── */
+  .deck{
+    display:flex;
+    height:100dvh;
+    width:100vw;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    scroll-behavior:smooth;
+    -webkit-overflow-scrolling:touch;
+  }
+  .deck::-webkit-scrollbar{display:none}
+  .deck{scrollbar-width:none}
+
+  .card{
+    position:relative;
+    flex:0 0 100vw;
+    width:100vw;
+    height:100dvh;
+    scroll-snap-align:start;
+    scroll-snap-stop:always;
+    overflow:hidden;
+    background:#0c0c0e;
+    cursor:pointer;
+  }
+  /* fallback texture when image is missing/broken */
+  .card::before{
+    content:"";
+    position:absolute;inset:0;
+    background:
+      radial-gradient(120% 80% at 70% 0%, rgba(255,255,255,.06), transparent 60%),
+      linear-gradient(160deg,#1a1a1f 0%,#0a0a0c 70%);
+    z-index:0;
+  }
+  .card .bg{
+    position:absolute;inset:0;
+    width:100%;height:100%;
+    object-fit:cover;
+    z-index:1;
+    opacity:0;
+    transition:opacity .6s ease;
+  }
+  .card .bg.loaded{opacity:1}
+  .card .bg.failed{display:none}
+
+  .card .scrim{
+    position:absolute;inset:0;z-index:2;
+    background:linear-gradient(to top,
+      rgba(0,0,0,.94) 0%,
+      rgba(0,0,0,.82) 22%,
+      rgba(0,0,0,.35) 52%,
+      rgba(0,0,0,.12) 74%,
+      rgba(0,0,0,.30) 100%);
+  }
+
+  .card .overlay{
+    position:absolute;left:0;right:0;bottom:0;z-index:3;
+    padding:0 22px calc(34px + var(--safe-b));
+    padding-top:120px;
+  }
+  .meta{
+    display:flex;align-items:center;gap:10px;
+    margin-bottom:12px;
+    font-size:12.5px;font-weight:700;
+    letter-spacing:.06em;text-transform:uppercase;
+  }
+  .meta .source{color:var(--accent)}
+  .meta .dot{color:var(--muted);font-weight:400}
+  .meta .date{color:var(--muted);font-weight:600;letter-spacing:.02em;text-transform:none;font-size:12.5px}
+  .meta .topic{
+    margin-left:auto;
+    padding:3px 9px;border-radius:999px;
+    font-size:10.5px;letter-spacing:.08em;
+    background:rgba(255,255,255,.12);
+    color:var(--muted);
+    backdrop-filter:blur(6px);
+  }
+  .card h2{
+    margin:0 0 12px;
+    font-size:clamp(27px,7.6vw,40px);
+    line-height:1.08;
+    font-weight:800;
+    letter-spacing:-.018em;
+    text-wrap:balance;
+    text-shadow:0 1px 24px rgba(0,0,0,.45);
+  }
+  .card .dek{
+    margin:0;
+    font-size:clamp(15px,4.2vw,18px);
+    line-height:1.45;
+    color:rgba(245,243,238,.92);
+    display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;
+    overflow:hidden;
+    max-width:38ch;
+  }
+  .card .cue{
+    margin-top:18px;
+    display:inline-flex;align-items:center;gap:7px;
+    font-size:13px;font-weight:600;color:rgba(245,243,238,.7);
+  }
+  .card .cue svg{width:15px;height:15px}
+
+  /* ───────────────────────── floating chrome ───────────────────────── */
+  .stamp{
+    position:fixed;z-index:30;
+    top:calc(12px + var(--safe-t));left:50%;transform:translateX(-50%);
+    display:inline-flex;align-items:center;gap:7px;
+    padding:7px 14px;border-radius:999px;
+    font-size:12px;font-weight:600;letter-spacing:.01em;
+    color:rgba(245,243,238,.9);
+    background:rgba(20,20,22,.42);
+    border:1px solid rgba(255,255,255,.12);
+    backdrop-filter:blur(16px) saturate(160%);
+    -webkit-backdrop-filter:blur(16px) saturate(160%);
+    white-space:nowrap;
+    pointer-events:none;
+  }
+  .stamp .pip{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+
+  .progress{
+    position:fixed;z-index:30;
+    left:50%;transform:translateX(-50%);
+    bottom:calc(16px + var(--safe-b));
+    display:flex;gap:6px;align-items:center;
+    padding:7px 12px;border-radius:999px;
+    background:rgba(20,20,22,.42);
+    border:1px solid rgba(255,255,255,.12);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    max-width:78vw;overflow:hidden;
+    pointer-events:none;
+  }
+  .progress i{
+    width:6px;height:6px;border-radius:50%;
+    background:rgba(255,255,255,.32);
+    flex:0 0 auto;transition:all .25s ease;
+  }
+  .progress i.on{background:var(--accent);width:18px;border-radius:3px}
+
+  /* ───────────────────────── article reader ───────────────────────── */
+  .reader{
+    position:fixed;inset:0;z-index:50;
+    background:var(--paper);color:var(--paper-ink);
+    transform:translateY(101%);
+    transition:transform .42s cubic-bezier(.22,1,.36,1);
+    visibility:hidden;
+  }
+  .reader.open{transform:translateY(0);visibility:visible}
+
+  .pages{
+    height:100dvh;
+    column-width:100vw;
+    column-gap:2.5rem;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    scroll-behavior:smooth;
+    -webkit-overflow-scrolling:touch;
+    padding:calc(78px + var(--safe-t)) 26px calc(40px + var(--safe-b));
+    text-align:justify;
+    -webkit-hyphens:auto;hyphens:auto;
+  }
+  .pages::-webkit-scrollbar{display:none}
+  .pages{scrollbar-width:none}
+
+  .pages > *{break-inside:avoid-column}
+  .pages .lead{break-inside:avoid-column}
+
+  .a-source{
+    font-size:12.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--accent);margin:0 0 10px;
+  }
+  .pages h1{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:clamp(26px,7vw,34px);
+    line-height:1.12;font-weight:800;letter-spacing:-.02em;
+    margin:0 0 14px;text-wrap:balance;
+  }
+  .a-byline{
+    font-size:13px;color:var(--paper-muted);margin:0 0 20px;
+    padding-bottom:18px;border-bottom:1px solid rgba(0,0,0,.1);
+  }
+  .a-hero{
+    width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:14px;
+    margin:0 0 22px;background:#e7e3da;
+  }
+  .a-hero.failed{display:none}
+  .pages p{
+    font-family:"New York","Iowan Old Style","Palatino Linotype",Georgia,"Times New Roman",serif;
+    font-size:19px;line-height:1.62;margin:0 0 1.05em;
+    color:#26221b;
+  }
+  .pages p.lead{font-size:21px;line-height:1.5;color:#1a1712;font-weight:500}
+  .a-orig{
+    display:inline-flex;align-items:center;gap:8px;
+    margin-top:8px;padding:13px 20px;border-radius:999px;
+    background:var(--paper-ink);color:var(--paper);
+    font-weight:700;font-size:15px;text-decoration:none;
+    -webkit-hyphens:none;hyphens:none;
+  }
+  .a-orig svg{width:16px;height:16px}
+  .a-end{
+    margin-top:26px;font-size:12.5px;color:var(--paper-muted);
+    -webkit-hyphens:none;hyphens:none;text-align:left;
+  }
+
+  .back{
+    position:fixed;z-index:60;
+    top:calc(16px + var(--safe-t));left:16px;
+    width:44px;height:44px;border:none;border-radius:50%;
+    display:none;align-items:center;justify-content:center;
+    background:rgba(255,255,255,.55);
+    color:#16140f;
+    backdrop-filter:blur(18px) saturate(160%);
+    -webkit-backdrop-filter:blur(18px) saturate(160%);
+    box-shadow:0 2px 14px rgba(0,0,0,.18);
+    cursor:pointer;
+  }
+  .reader.open ~ .back,.back.show{display:flex}
+  .back svg{width:21px;height:21px}
+
+  .pagenum{
+    position:fixed;z-index:55;display:none;
+    bottom:calc(18px + var(--safe-b));left:50%;transform:translateX(-50%);
+    font-size:12px;font-weight:700;letter-spacing:.04em;
+    color:var(--paper-muted);
+    background:rgba(255,255,255,.6);
+    padding:5px 12px;border-radius:999px;
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    -webkit-hyphens:none;hyphens:none;
+  }
+  .reader.open .pagenum{display:block}
+
+  /* ───────────────────────── states ───────────────────────── */
+  .state{
+    position:fixed;inset:0;z-index:10;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:14px;text-align:center;padding:40px;
+    color:var(--muted);
+  }
+  .state h1{color:var(--ink);font-size:22px;margin:0;font-weight:700}
+  .state p{margin:0;max-width:30ch;line-height:1.5;font-size:15px}
+  .spinner{
+    width:30px;height:30px;border-radius:50%;
+    border:3px solid rgba(255,255,255,.18);border-top-color:var(--accent);
+    animation:spin .8s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .hidden{display:none !important}
+
+  @media (prefers-reduced-motion:reduce){
+    .deck,.pages{scroll-behavior:auto}
+    .reader{transition:none}
+    .card .bg{transition:none}
+  }
+</style>
+</head>
+<body>
+
+  <main id="deck" class="deck" aria-label="Lista de lectura"></main>
+
+  <div id="stamp" class="stamp hidden"><span class="pip"></span><span id="stamp-text"></span></div>
+  <div id="progress" class="progress hidden"></div>
+
+  <section id="reader" class="reader" aria-label="Artículo" aria-hidden="true">
+    <div id="pages" class="pages"></div>
+    <div id="pagenum" class="pagenum"></div>
+  </section>
+  <button id="back" class="back" aria-label="Volver a la lista">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+
+  <div id="loading" class="state">
+    <div class="spinner"></div>
+    <p>Cargando la lectura de hoy…</p>
+  </div>
+
+<script>
+(() => {
+  "use strict";
+
+  const DATA_URL = "data/latest.json";
+  const TOPIC = {
+    tech:      { label:"tech",      accent:"var(--accent-tech)" },
+    ciencia:   { label:"ciencia",   accent:"var(--accent-ciencia)" },
+    "long-form":{ label:"long-form", accent:"var(--accent-longform)" },
+    longform:  { label:"long-form", accent:"var(--accent-longform)" },
+  };
+
+  const $ = (id) => document.getElementById(id);
+  const deckEl = $("deck"), readerEl = $("reader"), pagesEl = $("pages"),
+        backEl = $("back"), stampEl = $("stamp"), stampText = $("stamp-text"),
+        progressEl = $("progress"), pagenumEl = $("pagenum"), loadingEl = $("loading");
+
+  let items = [];
+
+  // ── date helpers (español de España) ──
+  const MONTHS = ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
+  function fmtDate(iso){
+    const d = new Date(iso);
+    if (isNaN(d)) return "";
+    const today = new Date();
+    const sameDay = d.toDateString() === today.toDateString();
+    const yest = new Date(today); yest.setDate(yest.getDate()-1);
+    if (sameDay) return "hoy";
+    if (d.toDateString() === yest.toDateString()) return "ayer";
+    return `${d.getDate()} ${MONTHS[d.getMonth()]}`;
+  }
+  function fmtStamp(iso){
+    const d = new Date(iso);
+    if (isNaN(d)) return "curado hoy";
+    const hh = String(d.getHours()).padStart(2,"0");
+    const mm = String(d.getMinutes()).padStart(2,"0");
+    return `curado · ${d.getDate()} ${MONTHS[d.getMonth()]} · ${hh}:${mm}`;
+  }
+
+  // ── image with no-referrer + graceful failure ──
+  function makeImg(url, cls){
+    const img = document.createElement("img");
+    img.className = cls;
+    img.loading = "lazy";
+    img.decoding = "async";
+    img.referrerPolicy = "no-referrer";
+    img.setAttribute("referrerpolicy","no-referrer");
+    img.alt = "";
+    if (!url){ img.classList.add("failed"); return img; }
+    img.addEventListener("load", () => img.classList.add("loaded"));
+    img.addEventListener("error", () => img.classList.add("failed"));
+    img.src = url;
+    return img;
+  }
+
+  function topicMeta(t){
+    return TOPIC[(t||"").toLowerCase()] || { label:(t||""), accent:"var(--accent)" };
+  }
+
+  // ── build a card ──
+  function buildCard(item, index){
+    const card = document.createElement("article");
+    card.className = "card";
+    card.style.setProperty("--accent", topicMeta(item.topic).accent);
+    card.dataset.index = index;
+
+    card.appendChild(makeImg(item.image, "bg"));
+
+    const scrim = document.createElement("div");
+    scrim.className = "scrim";
+    card.appendChild(scrim);
+
+    const ov = document.createElement("div");
+    ov.className = "overlay";
+
+    const meta = document.createElement("div");
+    meta.className = "meta";
+    const tm = topicMeta(item.topic);
+    meta.innerHTML =
+      `<span class="source">${esc(item.source||"")}</span>` +
+      (item.published ? `<span class="dot">·</span><span class="date">${esc(fmtDate(item.published))}</span>` : "") +
+      (tm.label ? `<span class="topic">${esc(tm.label)}</span>` : "");
+    ov.appendChild(meta);
+
+    const h2 = document.createElement("h2");
+    h2.textContent = item.title || "";
+    ov.appendChild(h2);
+
+    if (item.summary){
+      const dek = document.createElement("p");
+      dek.className = "dek";
+      dek.textContent = item.summary;
+      ov.appendChild(dek);
+    }
+
+    const cue = document.createElement("span");
+    cue.className = "cue";
+    cue.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Leer`;
+    ov.appendChild(cue);
+
+    card.appendChild(ov);
+    card.addEventListener("click", () => openReader(index));
+    return card;
+  }
+
+  function esc(s){
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  // ── article reader ──
+  function openReader(index){
+    const item = items[index];
+    if (!item) return;
+    pagesEl.scrollLeft = 0;
+    pagesEl.innerHTML = "";
+    readerEl.style.setProperty("--accent", topicMeta(item.topic).accent);
+
+    const src = document.createElement("p");
+    src.className = "a-source";
+    src.textContent = item.source || "";
+    pagesEl.appendChild(src);
+
+    const h1 = document.createElement("h1");
+    h1.textContent = item.title || "";
+    pagesEl.appendChild(h1);
+
+    const by = document.createElement("p");
+    by.className = "a-byline";
+    const bits = [];
+    if (item.published){
+      const d = new Date(item.published);
+      if (!isNaN(d)) bits.push(`${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`);
+    }
+    if (item.author) bits.push(item.author);
+    by.textContent = bits.join(" · ") || (item.source || "");
+    pagesEl.appendChild(by);
+
+    if (item.image){
+      const hero = makeImg(item.image, "a-hero");
+      pagesEl.appendChild(hero);
+    }
+
+    const body = Array.isArray(item.body) && item.body.length
+      ? item.body
+      : (item.summary ? [item.summary] : []);
+    body.forEach((para, i) => {
+      const p = document.createElement("p");
+      if (i === 0) p.className = "lead";
+      p.textContent = para;
+      pagesEl.appendChild(p);
+    });
+
+    if (item.url){
+      const a = document.createElement("a");
+      a.className = "a-orig";
+      a.href = item.url;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      a.innerHTML = `Leer el original <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>`;
+      pagesEl.appendChild(a);
+    }
+
+    const end = document.createElement("p");
+    end.className = "a-end";
+    end.textContent = "Resumen y traducción al español curados por Claude. El texto íntegro está en la fuente original.";
+    pagesEl.appendChild(end);
+
+    readerEl.classList.add("open");
+    readerEl.setAttribute("aria-hidden","false");
+    backEl.classList.add("show");
+    updatePageNum();
+    if (location.hash !== "#article") history.pushState({reader:true}, "", "#article");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeReader(){
+    readerEl.classList.remove("open");
+    readerEl.setAttribute("aria-hidden","true");
+    backEl.classList.remove("show");
+    pagenumEl.style.display = "none";
+  }
+
+  function updatePageNum(){
+    if (!readerEl.classList.contains("open")) return;
+    const total = Math.max(1, Math.round(pagesEl.scrollWidth / pagesEl.clientWidth));
+    const cur = Math.round(pagesEl.scrollLeft / pagesEl.clientWidth) + 1;
+    pagenumEl.textContent = total > 1 ? `${Math.min(cur,total)} / ${total}` : "";
+    pagenumEl.style.display = total > 1 ? "block" : "none";
+  }
+
+  // ── progress dots on the deck ──
+  function buildProgress(n){
+    progressEl.innerHTML = "";
+    if (n <= 1){ progressEl.classList.add("hidden"); return; }
+    const max = Math.min(n, 24);
+    for (let i=0;i<max;i++){
+      const d = document.createElement("i");
+      if (i===0) d.classList.add("on");
+      progressEl.appendChild(d);
+    }
+    progressEl.classList.remove("hidden");
+  }
+  function updateProgress(){
+    const idx = Math.round(deckEl.scrollLeft / window.innerWidth);
+    const dots = progressEl.children;
+    for (let i=0;i<dots.length;i++) dots[i].classList.toggle("on", i===Math.min(idx,dots.length-1));
+  }
+
+  // ── events ──
+  backEl.addEventListener("click", () => {
+    if (location.hash === "#article") history.back();
+    else closeReader();
+  });
+  window.addEventListener("popstate", () => {
+    if (readerEl.classList.contains("open")) closeReader();
+  });
+  let rafD;
+  deckEl.addEventListener("scroll", () => {
+    cancelAnimationFrame(rafD);
+    rafD = requestAnimationFrame(updateProgress);
+  }, {passive:true});
+  let rafP;
+  pagesEl.addEventListener("scroll", () => {
+    cancelAnimationFrame(rafP);
+    rafP = requestAnimationFrame(updatePageNum);
+  }, {passive:true});
+  window.addEventListener("keydown", (e) => {
+    if (readerEl.classList.contains("open")){
+      if (e.key === "Escape") backEl.click();
+      else if (e.key === "ArrowRight") pagesEl.scrollBy({left:window.innerWidth,behavior:"smooth"});
+      else if (e.key === "ArrowLeft")  pagesEl.scrollBy({left:-window.innerWidth,behavior:"smooth"});
+    } else {
+      if (e.key === "ArrowRight") deckEl.scrollBy({left:window.innerWidth,behavior:"smooth"});
+      else if (e.key === "ArrowLeft") deckEl.scrollBy({left:-window.innerWidth,behavior:"smooth"});
+    }
+  });
+
+  function showState(html){
+    loadingEl.className = "state";
+    loadingEl.innerHTML = html;
+  }
+
+  // ── boot ──
+  async function load(){
+    try{
+      const res = await fetch(DATA_URL, {cache:"no-store"});
+      if (!res.ok) throw new Error("HTTP "+res.status);
+      const data = await res.json();
+      items = Array.isArray(data.items) ? data.items : [];
+      if (!items.length){
+        showState(`<h1>Aún no hay lectura</h1><p>La curación diaria todavía no se ha ejecutado. Vuelve en un rato.</p>`);
+        return;
+      }
+      loadingEl.classList.add("hidden");
+
+      const frag = document.createDocumentFragment();
+      items.forEach((it,i) => frag.appendChild(buildCard(it,i)));
+      deckEl.appendChild(frag);
+
+      if (data.curated_at){
+        stampText.textContent = fmtStamp(data.curated_at);
+        stampEl.classList.remove("hidden");
+      }
+      buildProgress(items.length);
+    }catch(err){
+      showState(`<h1>No se pudo cargar</h1><p>${esc(err.message||"Error desconocido")}. Comprueba que <code>data/latest.json</code> existe.</p>`);
+    }
+  }
+
+  load();
+})();
+</script>
+</body>
+</html>

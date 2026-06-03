@@ -1,0 +1,30 @@
+{
+  "_comment": "Fuentes orientativas para Reader. topic ∈ tech | ciencia | long-form. lang ayuda a Claude a decidir si traduce. Edita libremente: los feeds que fallen se omiten silenciosamente.",
+  "feeds": [
+    { "source": "Microsiervos",        "topic": "tech",      "lang": "es", "url": "https://www.microsiervos.com/index.xml" },
+    { "source": "Xataka",              "topic": "tech",      "lang": "es", "url": "https://feeds.weblogssl.com/xataka2" },
+    { "source": "Hipertextual",        "topic": "tech",      "lang": "es", "url": "https://hipertextual.com/feed" },
+    { "source": "Ars Technica",        "topic": "tech",      "lang": "en", "url": "https://feeds.arstechnica.com/arstechnica/index" },
+    { "source": "The Verge",           "topic": "tech",      "lang": "en", "url": "https://www.theverge.com/rss/index.xml" },
+    { "source": "404 Media",           "topic": "tech",      "lang": "en", "url": "https://www.404media.co/rss/" },
+    { "source": "Stratechery",         "topic": "tech",      "lang": "en", "url": "https://stratechery.com/feed/" },
+    { "source": "Pluralistic",         "topic": "tech",      "lang": "en", "url": "https://pluralistic.net/feed/" },
+    { "source": "Anil Dash",           "topic": "tech",      "lang": "en", "url": "https://www.anildash.com/feed.xml" },
+    { "source": "Simon Willison",      "topic": "tech",      "lang": "en", "url": "https://simonwillison.net/atom/everything/" },
+    { "source": "Hacker News",         "topic": "tech",      "lang": "en", "url": "https://hnrss.org/frontpage?points=150" },
+
+    { "source": "Quanta Magazine",     "topic": "ciencia",   "lang": "en", "url": "https://www.quantamagazine.org/feed/" },
+    { "source": "Nature News",         "topic": "ciencia",   "lang": "en", "url": "https://www.nature.com/nature.rss" },
+    { "source": "El País · Ciencia",   "topic": "ciencia",   "lang": "es", "url": "https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/section/ciencia/portada" },
+    { "source": "Investigación y Ciencia", "topic": "ciencia", "lang": "es", "url": "https://www.investigacionyciencia.es/rss/actualidad" },
+    { "source": "Scientific American","topic": "ciencia",   "lang": "en", "url": "https://www.scientificamerican.com/feed/" },
+
+    { "source": "The Atlantic",        "topic": "long-form", "lang": "en", "url": "https://www.theatlantic.com/feed/all/" },
+    { "source": "The New Yorker",      "topic": "long-form", "lang": "en", "url": "https://www.newyorker.com/feed/everything" },
+    { "source": "London Review of Books", "topic": "long-form", "lang": "en", "url": "https://www.lrb.co.uk/feeds/rss" },
+    { "source": "Aeon",                "topic": "long-form", "lang": "en", "url": "https://aeon.co/feed.rss" },
+    { "source": "The Guardian · Long Read", "topic": "long-form", "lang": "en", "url": "https://www.theguardian.com/news/series/the-long-read/rss" },
+    { "source": "El País · Babelia",   "topic": "long-form", "lang": "es", "url": "https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/section/cultura/portada" },
+    { "source": "Jot Down",            "topic": "long-form", "lang": "es", "url": "https://www.jotdown.es/feed/" }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "curated_at": "2026-06-03T06:14:00Z",
+  "model": "seed",
+  "count": 6,
+  "_note": "Datos de muestra para previsualizar la interfaz. Se reemplazan en la primera ejecución de la GitHub Action.",
+  "items": [
+    {
+      "id": "seed-1",
+      "source": "Quanta Magazine",
+      "author": "",
+      "url": "https://www.quantamagazine.org/",
+      "topic": "ciencia",
+      "published": "2026-06-02T15:00:00Z",
+      "image": "https://picsum.photos/seed/quanta/1200/1600",
+      "title": "Un nuevo mapa del cerebro redibuja cómo se forman los recuerdos",
+      "summary": "Un equipo reconstruye, neurona a neurona, el circuito que consolida la memoria durante el sueño. El hallazgo desafía la idea de que el hipocampo trabaja solo.",
+      "body": [
+        "Durante décadas, los neurocientíficos asumieron que el hipocampo era el archivo central de la memoria. Un nuevo trabajo, basado en imágenes de actividad neuronal de altísima resolución, sugiere algo más coral: la corteza participa desde el primer minuto.",
+        "El equipo siguió a ratones mientras dormían tras aprender una tarea. Vieron cómo ciertos patrones se 'reproducían' en bucle, pero no solo en el hipocampo: la corteza prefrontal acompañaba el compás, como si ambas regiones ensayaran juntas.",
+        "La implicación es notable. Si la consolidación es un diálogo y no un traspaso, los modelos de cómo olvidamos —y de qué falla en el alzhéimer— podrían necesitar una revisión.",
+        "Quedan preguntas abiertas: el estudio se hizo en ratones y la traducción a humanos nunca es directa. Pero el método, dicen los autores, ya está listo para mirar otros tipos de recuerdo."
+      ]
+    },
+    {
+      "id": "seed-2",
+      "source": "404 Media",
+      "author": "",
+      "url": "https://www.404media.co/",
+      "topic": "tech",
+      "published": "2026-06-03T05:30:00Z",
+      "image": "https://picsum.photos/seed/fourzerofour/1200/1600",
+      "title": "Dentro de la economía sumergida de las cuentas verificadas",
+      "summary": "Una investigación destapa el mercado donde se compran, alquilan y reciclan perfiles verificados para inflar campañas. Quién paga, quién cobra y por qué cuesta tan poco.",
+      "body": [
+        "El reportaje sigue el rastro del dinero a través de varios intermediarios. Por menos de lo que cuesta una cena, cualquiera puede alquilar durante una semana una cuenta con la insignia azul y miles de seguidores reales.",
+        "Lo inquietante no es el fraude en sí, sino su normalización: existen paneles de autoservicio, atención al cliente y hasta reseñas. Es una industria, no un truco aislado.",
+        "Las plataformas afirman combatirlo, pero los vendedores entrevistados se ríen de las oleadas de baneos: rotan el inventario más rápido de lo que tarda la moderación en reaccionar."
+      ]
+    },
+    {
+      "id": "seed-3",
+      "source": "The Atlantic",
+      "author": "",
+      "url": "https://www.theatlantic.com/",
+      "topic": "long-form",
+      "published": "2026-06-01T12:00:00Z",
+      "image": "https://picsum.photos/seed/atlantic/1200/1600",
+      "title": "El elogio de la atención lenta",
+      "summary": "Un ensayo sobre lo que perdemos cuando todo está optimizado para la prisa, y por qué leer despacio se ha vuelto un acto casi político.",
+      "body": [
+        "El autor parte de una observación cotidiana: ya no terminamos las cosas, las consumimos a fragmentos. El ensayo no es una queja nostálgica, sino una defensa razonada del tiempo dedicado a una sola idea.",
+        "Recorre la historia de la lectura concentrada, desde los monasterios hasta el subrayador, para mostrar que la atención profunda siempre fue una disciplina, no un estado natural.",
+        "La tesis central: cultivar la atención lenta no es huir del mundo, sino una forma de habitarlo con más densidad. Y eso, hoy, requiere intención y un poco de testarudez."
+      ]
+    },
+    {
+      "id": "seed-4",
+      "source": "Simon Willison",
+      "author": "Simon Willison",
+      "url": "https://simonwillison.net/",
+      "topic": "tech",
+      "published": "2026-06-03T02:10:00Z",
+      "image": "https://picsum.photos/seed/willison/1200/1600",
+      "title": "Lo que aprendí construyendo herramientas con modelos locales",
+      "summary": "Notas prácticas tras un mes ejecutando modelos en el portátil: dónde brillan, dónde decepcionan y qué flujos de trabajo cambian de verdad.",
+      "body": [
+        "El texto es un cuaderno de campo más que un manifiesto. La conclusión sorprende por mesurada: los modelos locales no sustituyen a los grandes, pero abren usos donde la privacidad o la latencia mandan.",
+        "Hay ejemplos concretos de scripts, con tiempos y costes reales. El valor está en el detalle: qué tamaño de modelo basta para cada tarea y cuándo no merece la pena.",
+        "Cierra con una reflexión sobre el control: tener el modelo en tu máquina cambia la relación con la herramienta, aunque rinda menos."
+      ]
+    },
+    {
+      "id": "seed-5",
+      "source": "Nature News",
+      "author": "",
+      "url": "https://www.nature.com/",
+      "topic": "ciencia",
+      "published": "2026-06-02T09:00:00Z",
+      "image": "https://picsum.photos/seed/nature/1200/1600",
+      "title": "Una misión confirma agua en el subsuelo de un asteroide cercano",
+      "summary": "Las muestras traídas a la Tierra contienen minerales hidratados que reescriben cómo llegó el agua a nuestro vecindario planetario.",
+      "body": [
+        "El análisis de las muestras revela arcillas formadas en presencia de agua líquida, algo que solo se intuía a distancia. La cantidad es pequeña, pero la señal es inequívoca.",
+        "El dato alimenta el viejo debate sobre el origen del agua terrestre: ¿llegó en asteroides como este? El estudio no zanja la cuestión, pero estrecha el cerco.",
+        "Lo más valioso, dicen los investigadores, es tener por fin material sin contaminar por la atmósfera. Cada gramo dará trabajo durante años."
+      ]
+    },
+    {
+      "id": "seed-6",
+      "source": "Aeon",
+      "author": "",
+      "url": "https://aeon.co/",
+      "topic": "long-form",
+      "published": "2026-05-30T10:00:00Z",
+      "image": "https://picsum.photos/seed/aeon/1200/1600",
+      "title": "Por qué seguimos contando historias de fantasmas",
+      "summary": "Un ensayo sobre la persistencia de lo sobrenatural en culturas que se creen racionales, y lo que revela sobre el duelo y la memoria.",
+      "body": [
+        "El fantasma, argumenta la autora, no es una creencia sino una gramática: una forma de hablar de lo que no termina de irse. Por eso sobrevive a la Ilustración y al wifi.",
+        "El texto pasea por relatos de varias culturas para mostrar un patrón común: el aparecido casi siempre tiene un asunto pendiente, igual que el que lo recuerda.",
+        "La conclusión es delicada: contar fantasmas es una manera de ensayar la pérdida. No creemos en ellos; los necesitamos."
+      ]
+    }
+  ]
+}

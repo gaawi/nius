@@ -1,0 +1,17 @@
+{
+  "name": "reader",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Lista diaria de lectura curada por Claude. HTML estático + GitHub Actions.",
+  "scripts": {
+    "curate": "node scripts/curate.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "rss-parser": "^3.13.0"
+  }
+}
