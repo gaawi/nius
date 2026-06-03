@@ -1,104 +1,246 @@
 {
-  "curated_at": "2026-06-03T06:14:00Z",
-  "model": "seed",
-  "count": 6,
-  "_note": "Datos de muestra para previsualizar la interfaz. Se reemplazan en la primera ejecución de la GitHub Action.",
+  "curated_at": "2026-06-03T11:57:47Z",
+  "model": "claude (curación manual de arranque)",
+  "count": 15,
   "items": [
     {
-      "id": "seed-1",
+      "id": "https://www.quantamagazine.org/the-dirt-that-refused-to-die-20260601/",
       "source": "Quanta Magazine",
       "author": "",
-      "url": "https://www.quantamagazine.org/",
+      "url": "https://www.quantamagazine.org/the-dirt-that-refused-to-die-20260601/",
       "topic": "ciencia",
-      "published": "2026-06-02T15:00:00Z",
-      "image": "https://picsum.photos/seed/quanta/1200/1600",
-      "title": "Un nuevo mapa del cerebro redibuja cómo se forman los recuerdos",
-      "summary": "Un equipo reconstruye, neurona a neurona, el circuito que consolida la memoria durante el sueño. El hallazgo desafía la idea de que el hipocampo trabaja solo.",
+      "published": "2026-06-01T14:44:57.000Z",
+      "image": "https://www.quantamagazine.org/wp-content/uploads/2026/06/Abiotic-metabolism-cr-Samuel-Velasco-Default.webp",
+      "title": "La tierra que se negó a morir",
+      "summary": "En un suelo esterilizado, una química propia de los seres vivos siguió funcionando durante seis años. El hallazgo da alas a la idea de que la vida empezó por el metabolismo, no por los genes.",
       "body": [
-        "Durante décadas, los neurocientíficos asumieron que el hipocampo era el archivo central de la memoria. Un nuevo trabajo, basado en imágenes de actividad neuronal de altísima resolución, sugiere algo más coral: la corteza participa desde el primer minuto.",
-        "El equipo siguió a ratones mientras dormían tras aprender una tarea. Vieron cómo ciertos patrones se 'reproducían' en bucle, pero no solo en el hipocampo: la corteza prefrontal acompañaba el compás, como si ambas regiones ensayaran juntas.",
-        "La implicación es notable. Si la consolidación es un diálogo y no un traspaso, los modelos de cómo olvidamos —y de qué falla en el alzhéimer— podrían necesitar una revisión.",
-        "Quedan preguntas abiertas: el estudio se hizo en ratones y la traducción a humanos nunca es directa. Pero el método, dicen los autores, ya está listo para mirar otros tipos de recuerdo."
+        "Los investigadores esterilizaron muestras de suelo para acabar con cualquier rastro de vida y, en teoría, detener toda actividad bioquímica. No fue así: durante seis años, reacciones que asociamos a organismos vivos siguieron produciéndose por sí solas en la tierra inerte.",
+        "El detalle importa para una de las preguntas más antiguas de la ciencia: ¿qué fue primero, la información genética o el metabolismo? El experimento apunta a lo segundo. Si una red de reacciones químicas puede sostenerse sola, quizá la vida arrancó como un metabolismo que se mantenía a sí mismo antes de que existieran genes que lo gobernaran.",
+        "No es una prueba del origen de la vida, sino una pista incómoda y fértil: la frontera entre lo vivo y lo inerte es más borrosa de lo que nos gusta creer. Lo que parecía un suelo muerto resultó ser un sistema químico tercamente activo."
       ]
     },
     {
-      "id": "seed-2",
+      "id": "https://www.404media.co/google-is-quietly-buying-code-from-play-store-developers-to-train-ai/",
       "source": "404 Media",
       "author": "",
-      "url": "https://www.404media.co/",
+      "url": "https://www.404media.co/google-is-quietly-buying-code-from-play-store-developers-to-train-ai/",
       "topic": "tech",
-      "published": "2026-06-03T05:30:00Z",
-      "image": "https://picsum.photos/seed/fourzerofour/1200/1600",
-      "title": "Dentro de la economía sumergida de las cuentas verificadas",
-      "summary": "Una investigación destapa el mercado donde se compran, alquilan y reciclan perfiles verificados para inflar campañas. Quién paga, quién cobra y por qué cuesta tan poco.",
+      "published": "2026-06-03T00:16:47.000Z",
+      "image": "https://storage.ghost.io/c/0f/76/0f76b548-bc58-4f25-abc3-3f5ebca07da4/content/images/2026/06/CleanShot-2026-06-02-at-17.15.56@2x.png",
+      "title": "Google compra en silencio el código de quienes publican en Play Store",
+      "summary": "Un programa que Google describe como “confidencial” ofrece dinero a algunos desarrolladores de Android a cambio de su código, que servirá para entrenar IA. Quién entra y qué se cede no está nada claro.",
       "body": [
-        "El reportaje sigue el rastro del dinero a través de varios intermediarios. Por menos de lo que cuesta una cena, cualquiera puede alquilar durante una semana una cuenta con la insignia azul y miles de seguidores reales.",
-        "Lo inquietante no es el fraude en sí, sino su normalización: existen paneles de autoservicio, atención al cliente y hasta reseñas. Es una industria, no un truco aislado.",
-        "Las plataformas afirman combatirlo, pero los vendedores entrevistados se ríen de las oleadas de baneos: rotan el inventario más rápido de lo que tarda la moderación en reaccionar."
+        "Según esta investigación de 404 Media, Google está abordando a determinados desarrolladores de Android para comprarles su código fuente. La etiqueta que usa internamente —“confidencial”— ya dice bastante sobre la transparencia de la operación.",
+        "El destino del código es entrenar modelos de inteligencia artificial. Es un giro revelador: tras agotar buena parte del texto y las imágenes disponibles en la web abierta, las grandes tecnológicas buscan ahora materia prima de calidad allí donde la haya, y el software bien escrito es un filón.",
+        "El reportaje deja preguntas abiertas sobre el consentimiento y el precio: qué se les dice exactamente a los desarrolladores, qué derechos ceden y si entienden que están alimentando a los modelos que, andando el tiempo, podrían escribir el código que hoy ellos venden."
       ]
     },
     {
-      "id": "seed-3",
-      "source": "The Atlantic",
-      "author": "",
-      "url": "https://www.theatlantic.com/",
-      "topic": "long-form",
-      "published": "2026-06-01T12:00:00Z",
-      "image": "https://picsum.photos/seed/atlantic/1200/1600",
-      "title": "El elogio de la atención lenta",
-      "summary": "Un ensayo sobre lo que perdemos cuando todo está optimizado para la prisa, y por qué leer despacio se ha vuelto un acto casi político.",
-      "body": [
-        "El autor parte de una observación cotidiana: ya no terminamos las cosas, las consumimos a fragmentos. El ensayo no es una queja nostálgica, sino una defensa razonada del tiempo dedicado a una sola idea.",
-        "Recorre la historia de la lectura concentrada, desde los monasterios hasta el subrayador, para mostrar que la atención profunda siempre fue una disciplina, no un estado natural.",
-        "La tesis central: cultivar la atención lenta no es huir del mundo, sino una forma de habitarlo con más densidad. Y eso, hoy, requiere intención y un poco de testarudez."
-      ]
-    },
-    {
-      "id": "seed-4",
-      "source": "Simon Willison",
-      "author": "Simon Willison",
-      "url": "https://simonwillison.net/",
-      "topic": "tech",
-      "published": "2026-06-03T02:10:00Z",
-      "image": "https://picsum.photos/seed/willison/1200/1600",
-      "title": "Lo que aprendí construyendo herramientas con modelos locales",
-      "summary": "Notas prácticas tras un mes ejecutando modelos en el portátil: dónde brillan, dónde decepcionan y qué flujos de trabajo cambian de verdad.",
-      "body": [
-        "El texto es un cuaderno de campo más que un manifiesto. La conclusión sorprende por mesurada: los modelos locales no sustituyen a los grandes, pero abren usos donde la privacidad o la latencia mandan.",
-        "Hay ejemplos concretos de scripts, con tiempos y costes reales. El valor está en el detalle: qué tamaño de modelo basta para cada tarea y cuándo no merece la pena.",
-        "Cierra con una reflexión sobre el control: tener el modelo en tu máquina cambia la relación con la herramienta, aunque rinda menos."
-      ]
-    },
-    {
-      "id": "seed-5",
+      "id": "https://www.nature.com/articles/d41586-026-01727-x",
       "source": "Nature News",
       "author": "",
-      "url": "https://www.nature.com/",
+      "url": "https://www.nature.com/articles/d41586-026-01727-x",
       "topic": "ciencia",
-      "published": "2026-06-02T09:00:00Z",
-      "image": "https://picsum.photos/seed/nature/1200/1600",
-      "title": "Una misión confirma agua en el subsuelo de un asteroide cercano",
-      "summary": "Las muestras traídas a la Tierra contienen minerales hidratados que reescriben cómo llegó el agua a nuestro vecindario planetario.",
+      "published": "2026-06-03T00:00:00.000Z",
+      "image": "https://media.nature.com/lw1200/magazine-assets/d41586-026-01727-x/d41586-026-01727-x_52496234.jpg",
+      "title": "Bebés y perros contra la crisis de reproducibilidad de la psicología",
+      "summary": "La ciencia cognitiva arrastra desde hace años el problema de que muchos resultados no se replican. La respuesta: laboratorios de medio mundo uniéndose para repetir los grandes experimentos a gran escala.",
       "body": [
-        "El análisis de las muestras revela arcillas formadas en presencia de agua líquida, algo que solo se intuía a distancia. La cantidad es pequeña, pero la señal es inequívoca.",
-        "El dato alimenta el viejo debate sobre el origen del agua terrestre: ¿llegó en asteroides como este? El estudio no zanja la cuestión, pero estrecha el cerco.",
-        "Lo más valioso, dicen los investigadores, es tener por fin material sin contaminar por la atmósfera. Cada gramo dará trabajo durante años."
+        "Buena parte de la psicología y la ciencia cognitiva sufre una resaca incómoda: cuando se intentan repetir estudios célebres, a menudo el resultado no aparece. Es la llamada crisis de reproducibilidad, y mina la confianza en hallazgos que llevaban años dándose por buenos.",
+        "La estrategia que cuenta Nature es ambiciosa y un punto entrañable: consorcios de laboratorios que se coordinan para correr los mismos experimentos con muestras enormes, incluidas las más difíciles de reclutar, como bebés o perros. Donde un solo laboratorio aportaba unas decenas de sujetos, ahora colaboran docenas de centros.",
+        "El objetivo no es solo confirmar o desmentir tal o cual efecto, sino cambiar la forma de hacer ciencia: menos hallazgos llamativos de un único grupo y más resultados robustos, comprobados por muchas manos a la vez. Es menos espectacular, pero mucho más fiable."
       ]
     },
     {
-      "id": "seed-6",
-      "source": "Aeon",
-      "author": "",
-      "url": "https://aeon.co/",
-      "topic": "long-form",
-      "published": "2026-05-30T10:00:00Z",
-      "image": "https://picsum.photos/seed/aeon/1200/1600",
-      "title": "Por qué seguimos contando historias de fantasmas",
-      "summary": "Un ensayo sobre la persistencia de lo sobrenatural en culturas que se creen racionales, y lo que revela sobre el duelo y la memoria.",
+      "id": "https://stratechery.com/2026/the-google-capital-company/",
+      "source": "Stratechery",
+      "author": "Ben Thompson",
+      "url": "https://stratechery.com/2026/the-google-capital-company/",
+      "topic": "tech",
+      "published": "2026-06-02T10:00:00.000Z",
+      "image": null,
+      "title": "Google, una empresa de capital",
+      "summary": "Google ha entregado acciones a Berkshire Hathaway en una operación que, según Ben Thompson, anticipa un futuro donde el capital —y no la tecnología— es la materia prima decisiva.",
       "body": [
-        "El fantasma, argumenta la autora, no es una creencia sino una gramática: una forma de hablar de lo que no termina de irse. Por eso sobrevive a la Ilustración y al wifi.",
-        "El texto pasea por relatos de varias culturas para mostrar un patrón común: el aparecido casi siempre tiene un asunto pendiente, igual que el que lo recuerda.",
-        "La conclusión es delicada: contar fantasmas es una manera de ensayar la pérdida. No creemos en ellos; los necesitamos."
+        "Ben Thompson analiza un movimiento aparentemente técnico —Google emite acciones a cambio de la entrada de Berkshire Hathaway— y lo lee como una señal de fondo: la demanda en torno a Google es enorme y el dinero se está convirtiendo en el recurso que de verdad escasea.",
+        "Su tesis es que en la era de la IA el cuello de botella ya no es la idea ni el talento, sino el capital necesario para construir centros de datos, comprar chips y sostener un gasto colosal. Quien tenga acceso a ese capital marca el ritmo.",
+        "De ahí la imagen que da título al análisis: Google empieza a parecerse tanto a una empresa de tecnología como a una máquina de asignar capital a una escala que pocos pueden igualar. Una pieza para entender hacia dónde se está desplazando el poder en el sector."
+      ]
+    },
+    {
+      "id": "https://www.jotdown.es/2026/06/copia-certificada/",
+      "source": "Jot Down",
+      "author": "",
+      "url": "https://www.jotdown.es/2026/06/copia-certificada/",
+      "topic": "long-form",
+      "published": "2026-06-01T06:00:30.000Z",
+      "image": "https://www.jotdown.es/wp-content/uploads/2026/04/Una-escena-de-Copia-certificada-de-Abbas-Kiarostami.jpg",
+      "title": "Copia certificada",
+      "summary": "En los mercados de Asia Central, las falsificaciones de moda no imitan al original: lo sustituyen y crean su propio sistema de valor. Un ensayo sobre autenticidad, deseo y copia.",
+      "body": [
+        "El ensayo arranca entre las montañas de especias del mercado de Taskent y se adentra en los puestos donde la moda falsificada reina sin complejos. Allí la copia no se esconde ni pide perdón: ocupa el lugar del original y funciona por sus propias reglas.",
+        "A partir de esa escena, el texto reflexiona sobre qué significa lo auténtico cuando la falsificación tiene su propio mercado, sus jerarquías y su prestigio. El guiño a la película de Kiarostami, 'Copie conforme', no es casual: ¿qué cambia entre un original y una copia perfecta, más allá de lo que decidimos creer?",
+        "Es una pieza de las que se leen despacio, que usa un bazar de Asia Central para hablar de algo mucho más amplio: el deseo, el estatus y la frágil frontera entre lo verdadero y lo que aceptamos como tal."
+      ]
+    },
+    {
+      "id": "https://www.xataka.com/empresas-y-economia/chips-nvidia-llegaban-a-china-solo-falta-filial-malasia",
+      "source": "Xataka",
+      "author": "",
+      "url": "https://www.xataka.com/empresas-y-economia/chips-nvidia-llegaban-a-china-solo-falta-filial-malasia",
+      "topic": "tech",
+      "published": "2026-06-03T10:45:58.000Z",
+      "image": "https://i.blogs.es/3d3cb8/nvidia-gpu-blackwelll/1024_2000.jpeg",
+      "title": "Los chips de Nvidia sí llegaban a China: bastaba con una filial en Malasia",
+      "summary": "Washington lleva años sospechando que la IA china esquiva el veto a las GPU más avanzadas de Nvidia. La vía, apunta este reportaje, pasa por empresas intermediarias en Singapur y Malasia.",
+      "body": [
+        "Estados Unidos prohíbe vender a China las GPU más potentes de Nvidia, las que mueven la inteligencia artificial de frontera. Sobre el papel, el cerco es estricto; en la práctica, lleva tiempo haciendo aguas.",
+        "El reportaje detalla el mecanismo: compañías y centros de investigación chinos adquirirían esos chips a través de intermediarias radicadas en Singapur y Malasia. Una filial en el lugar adecuado basta para que el hardware acabe donde no debería.",
+        "El caso ilustra lo difícil que es poner puertas al campo en un mercado global. Mientras la demanda china de cómputo siga disparada y el margen sea jugoso, cada control de exportación parece encontrar su atajo. La pregunta es hasta qué punto Washington puede —o quiere— cerrarlos todos."
+      ]
+    },
+    {
+      "id": "https://aeon.co/essays/lets-save-the-enlightenment-baby-from-its-muddied-bathwater",
+      "source": "Aeon",
+      "author": "Eliane Glaser",
+      "url": "https://aeon.co/essays/lets-save-the-enlightenment-baby-from-its-muddied-bathwater",
+      "topic": "long-form",
+      "published": "2026-05-28T10:00:00.000Z",
+      "image": "https://images.aeonmedia.co/images/b47293d2-92aa-4622-9677-a01d53cd909a/essay-the_enlightenment_final2.jpg?width=1200&quality=75&format=auto",
+      "title": "La Ilustración, a contracorriente",
+      "summary": "Atacada desde la izquierda y desde la derecha, la Ilustración solo puede salvarse, sostiene este ensayo, recurriendo a su mejor legado: la crítica permanente.",
+      "body": [
+        "La Ilustración recibe hoy fuego cruzado. Desde una orilla se la acusa de haber dado coartada al colonialismo y al racismo; desde la otra, se la invoca como bandera identitaria contra todo lo que suene a progresismo. Eliane Glaser sostiene que ambas lecturas la traicionan.",
+        "Su argumento es que el verdadero corazón de la Ilustración no es un catálogo de certezas, sino un método: la crítica permanente, la disposición a cuestionarlo todo, empezando por las propias ideas. Renunciar a ella en nombre de la pureza, venga de donde venga, es tirar al niño con el agua sucia.",
+        "El ensayo defiende así una Ilustración autocrítica antes que triunfalista: capaz de reconocer sus sombras sin abjurar de su mejor herencia. Una invitación a no dejar que el debate cultural se quede con la versión más pobre de una idea poderosa."
+      ]
+    },
+    {
+      "id": "https://www.404media.co/nvidia-and-microsoft-researchers-say-ai-agents-dont-care-about-safety-or-reliability/",
+      "source": "404 Media",
+      "author": "",
+      "url": "https://www.404media.co/nvidia-and-microsoft-researchers-say-ai-agents-dont-care-about-safety-or-reliability/",
+      "topic": "tech",
+      "published": "2026-06-02T15:03:17.000Z",
+      "image": "https://images.unsplash.com/photo-1527430253228-e93688616381?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTc3M3wwfDF8c2VhcmNofDF8fGJsaW5kJTIwcm9ib3R8ZW58MHx8fHwxNzgwNDA3NTYxfDA&ixlib=rb-4.1.0&q=80&w=2000",
+      "title": "Los agentes de IA no se preocupan por la seguridad, según investigadores de Nvidia y Microsoft",
+      "summary": "Un trabajo firmado por investigadores de Nvidia y Microsoft compara a los agentes de IA con Mr. Magoo: avanzan a ciegas entre peligros que no perciben. La fiabilidad no es su prioridad.",
+      "body": [
+        "El estudio recurre a una imagen tan vieja como elocuente: Mr. Magoo, el personaje de dibujos animados cortísimo de vista que cruza situaciones peligrosísimas sin enterarse de nada y sale indemne de pura chiripa. Así describen estos investigadores a los agentes de IA actuales.",
+        "El mensaje, viniendo de Nvidia y Microsoft —dos empresas con todos los incentivos para vender estos sistemas—, resulta especialmente llamativo: los agentes ejecutan tareas encadenando acciones, pero no tienen una noción real de seguridad ni de fiabilidad. Funcionan hasta que dejan de hacerlo, sin ver venir el problema.",
+        "La conclusión no es que los agentes sean inútiles, sino que conviene desconfiar del entusiasmo. Delegar decisiones con consecuencias en sistemas que tropiezan sin darse cuenta exige redes de seguridad que hoy, en muchos casos, no existen."
+      ]
+    },
+    {
+      "id": "https://www.nature.com/articles/d41586-026-01725-z",
+      "source": "Nature News",
+      "author": "",
+      "url": "https://www.nature.com/articles/d41586-026-01725-z",
+      "topic": "ciencia",
+      "published": "2026-06-03T00:00:00.000Z",
+      "image": "https://media.nature.com/lw1200/magazine-assets/d41586-026-01725-z/d41586-026-01725-z_52473162.jpg",
+      "title": "Por qué aún merece la pena construir un genoma humano sintético",
+      "summary": "Una década después de lanzar un proyecto ambicioso y polémico, Nature revisa las razones para escribir un genoma humano desde cero, con sus promesas y sus dilemas éticos.",
+      "body": [
+        "Hace ya diez años arrancó la idea de no limitarse a leer el genoma humano, sino escribirlo entero, sintetizándolo desde cero en el laboratorio. El proyecto nació rodeado de polémica y, una década después, Nature se pregunta qué sentido conserva.",
+        "Los argumentos a favor siguen siendo potentes: fabricar ADN a esa escala permitiría entender mejor cómo funciona el genoma, diseñar células más resistentes o producir terapias y materiales nuevos. Es ciencia básica con aplicaciones difíciles de imaginar hoy del todo.",
+        "Pero la sombra ética es larga. Escribir genomas humanos abre debates sobre seguridad, control y los límites de lo que deberíamos crear. El artículo no esquiva esa tensión: defiende el valor del conocimiento mientras reconoce que la prudencia, aquí, no es opcional."
+      ]
+    },
+    {
+      "id": "https://www.xataka.com/movilidad/su-promesa-vendernos-coche-perfecto-marcas-tradicionales-tienen-atajo-coches-chinos-disfrazados-europeos",
+      "source": "Xataka",
+      "author": "",
+      "url": "https://www.xataka.com/movilidad/su-promesa-vendernos-coche-perfecto-marcas-tradicionales-tienen-atajo-coches-chinos-disfrazados-europeos",
+      "topic": "tech",
+      "published": "2026-06-03T11:01:58.000Z",
+      "image": "https://i.blogs.es/d7baf6/coches-chinos-recarrozados-europa/1024_2000.jpeg",
+      "title": "Las marcas occidentales venden coches chinos con otro nombre",
+      "summary": "El camino se ha invertido. Si antes Occidente fabricaba en China buscando mano de obra barata, ahora cada vez más marcas tradicionales reetiquetan vehículos chinos para vendértelos como propios.",
+      "body": [
+        "Hubo una época en que China atraía a la industria europea con suelo barato y mano de obra a bajo coste. Esa etapa, dice Xataka, se ha terminado: el flujo va ahora en sentido contrario, y es la tecnología china del automóvil la que está colonizando Europa.",
+        "El movimiento es sutil pero profundo. En lugar de competir de frente, varias marcas occidentales se asocian con fabricantes chinos y comercializan sus coches recarrozados, con un logotipo conocido pegado sobre una plataforma desarrollada en China.",
+        "Para el comprador, la frontera se difumina: el coche europeo de toda la vida puede ser, por dentro, un vehículo chino. El reportaje retrata un cambio de poder en una industria que durante un siglo definió el prestigio tecnológico de Occidente."
+      ]
+    },
+    {
+      "id": "https://aeon.co/essays/why-mozarts-operas-are-tests-of-moral-character",
+      "source": "Aeon",
+      "author": "Dorian Bandy",
+      "url": "https://aeon.co/essays/why-mozarts-operas-are-tests-of-moral-character",
+      "topic": "long-form",
+      "published": "2026-05-29T10:00:00.000Z",
+      "image": "https://images.aeonmedia.co/images/90b00e59-86a7-4c16-b789-392281a07d1a/essay-gettyimages-2164305840.jpg?width=1200&quality=75&format=auto",
+      "title": "Mozart, artista de la compasión y la crueldad",
+      "summary": "El genio de Mozart, sostiene este ensayo, estaba en escribir música tan poderosa que arrastra al oyente a dilemas morales desgarradores. Sus óperas son, casi, pruebas de carácter.",
+      "body": [
+        "Dorian Bandy propone escuchar a Mozart de otra manera: no como pura belleza melódica, sino como un compositor que usa esa belleza para meternos en aprietos morales. Su música nos hace sentir simpatía por personajes que quizá no la merecen.",
+        "El ensayo recorre sus óperas para mostrar cómo Mozart difumina la frontera entre la compasión y la crueldad. El seductor, el traidor, la víctima: a todos les concede una música tan persuasiva que el público se descubre tomando partido casi sin querer.",
+        "De ahí la idea provocadora del título: escuchar a Mozart es, en cierto modo, someterse a una prueba. ¿De parte de quién nos pone su música y por qué? Una lectura que enriquece la próxima vez que suene 'Don Giovanni' o 'Las bodas de Fígaro'."
+      ]
+    },
+    {
+      "id": "https://blog.ammaraskar.com/github-token-stealing/",
+      "source": "Hacker News",
+      "author": "Ammar Askar",
+      "url": "https://blog.ammaraskar.com/github-token-stealing/",
+      "topic": "tech",
+      "published": "2026-06-02T15:29:05.000Z",
+      "image": null,
+      "title": "Robar un token de GitHub con un solo clic gracias a un fallo de VS Code",
+      "summary": "Un investigador detalla cómo un error en VS Code permitía robar el token de GitHub de la víctima con un único clic. Una pieza técnica que enseña cómo se encadena un exploit moderno.",
+      "body": [
+        "El autor desgrana, paso a paso, una cadena de fallos que culminaba en algo muy serio: bastaba que la víctima hiciera un clic para que un atacante se llevara su token de acceso a GitHub, las llaves de su código.",
+        "Lo interesante del artículo no es solo la vulnerabilidad concreta —ya corregida—, sino el método. Muestra cómo se combinan piezas en apariencia inofensivas (la integración de VS Code con el navegador, el manejo de enlaces y autorizaciones) hasta convertirlas en un asalto de un clic.",
+        "Es lectura recomendable para cualquiera que programe: un recordatorio de que las herramientas en las que más confiamos también son superficie de ataque, y una buena clase práctica sobre cómo piensa quien busca el eslabón débil."
+      ]
+    },
+    {
+      "id": "https://www.nature.com/articles/d41586-026-01763-7",
+      "source": "Nature News",
+      "author": "",
+      "url": "https://www.nature.com/articles/d41586-026-01763-7",
+      "topic": "ciencia",
+      "published": "2026-06-02T00:00:00.000Z",
+      "image": "https://media.nature.com/lw1200/magazine-assets/d41586-026-01763-7/d41586-026-01763-7_52496888.jpg",
+      "title": "Los químicos “ecológicos” que se acumulan en la atmósfera",
+      "summary": "Las hidrofluoroolefinas se vendían como sustitutas respetuosas de gases más dañinos. Mediciones a gran escala muestran que sus niveles suben en el aire, con consecuencias aún por aclarar.",
+      "body": [
+        "Las hidrofluoroolefinas (HFO) llegaron como solución: refrigerantes y propelentes pensados para reemplazar a gases mucho más perjudiciales para el clima y la capa de ozono. La promesa era un impacto ambiental mínimo.",
+        "Mediciones atmosféricas a gran escala cuentan una historia más matizada: la concentración de estos compuestos está aumentando de forma clara en el aire. El qué se mide ya no se discute; lo que está en el aire, nunca mejor dicho, son las consecuencias.",
+        "El caso encierra una lección recurrente en la química ambiental: lo que se diseña como sustituto benigno puede traer efectos imprevistos cuando se libera a escala planetaria. Vigilar de cerca esos niveles, antes de cantar victoria, es justo lo que reclama el estudio."
+      ]
+    },
+    {
+      "id": "https://www.microsiervos.com/archivo/ordenadores/cruce-cables-91-software-abandonado.html",
+      "source": "Microsiervos",
+      "author": "",
+      "url": "https://www.microsiervos.com/archivo/ordenadores/cruce-cables-91-software-abandonado.html",
+      "topic": "tech",
+      "published": "2026-06-02T22:03:13.000Z",
+      "image": "https://img.microsiervos.com/images2026/software-sostiene.webp",
+      "title": "El software abandonado que sostiene el mundo",
+      "summary": "Internet entera descansa sobre piezas de software mantenidas, muchas veces gratis, por una sola persona. Microsiervos repasa el problema del código del que todos dependemos sin saberlo.",
+      "body": [
+        "A partir de una conversación en el programa Cruce de cables de RNE, Microsiervos vuelve sobre uno de los problemas más silenciosos de la tecnología: una parte enorme de la infraestructura digital se apoya en programas que mantiene, gratis y en su tiempo libre, gente que casi nadie conoce.",
+        "La imagen es la del célebre cómic de xkcd: una estructura inmensa sostenida por una piececita minúscula que un voluntario lleva años aguantando sin reconocimiento. Cuando esa persona se cansa, enferma o desaparece, todo lo que hay encima tiembla.",
+        "El texto invita a mirar de otra manera el software libre del que dependen empresas multimillonarias: no como un recurso infinito y gratuito, sino como un bien común frágil que conviene cuidar, financiar y no dar por sentado."
+      ]
+    },
+    {
+      "id": "https://pluralistic.net/2026/06/02/must-we-pretend/",
+      "source": "Pluralistic",
+      "author": "Cory Doctorow",
+      "url": "https://pluralistic.net/2026/06/02/must-we-pretend/",
+      "topic": "long-form",
+      "published": "2026-06-02T09:18:16.000Z",
+      "image": "https://i0.wp.com/craphound.com/images/02Jun2026.jpg?w=840&ssl=1",
+      "title": "El tedioso poder de contar historias",
+      "summary": "Cory Doctorow propone una analogía afilada: la “emoción” es al arte lo que la “falsabilidad” es a la ciencia. Necesaria, sí, pero lejos de ser suficiente para que algo valga la pena.",
+      "body": [
+        "Doctorow arranca con una comparación que ordena todo el ensayo: igual que en ciencia una teoría tiene que ser falsable para tomarse en serio, una obra de arte tiene que emocionar, enganchar, mover algo. Es el requisito de entrada.",
+        "Pero, advierte, confundir el requisito con la meta es un error. Que algo emocione no lo hace bueno, igual que una hipótesis falsable no es por ello verdadera. La emoción abre la puerta; lo que de verdad importa ocurre una vez dentro.",
+        "Desde ahí, el texto reflexiona sobre la narración como herramienta poderosa y a la vez tramposa: sirve para iluminar, pero también para manipular. Una pieza típica de Doctorow, que mezcla teoría del arte, política y un puñado de enlaces para seguir tirando del hilo."
       ]
     }
   ]
