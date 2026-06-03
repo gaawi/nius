@@ -1,0 +1,44 @@
+name: Desplegar en Pages
+
+on:
+  push:
+    branches: [main]
+  # Re-despliega cuando la curación diaria actualiza data/latest.json.
+  # (Un push hecho por GITHUB_TOKEN no dispara 'push', por eso usamos workflow_run.)
+  workflow_run:
+    workflows: ["Curación diaria"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Configurar Pages
+        uses: actions/configure-pages@v5
+
+      - name: Empaquetar el sitio
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "."
+
+      - name: Desplegar
+        id: deployment
+        uses: actions/deploy-pages@v4
