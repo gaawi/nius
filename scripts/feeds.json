@@ -1,5 +1,5 @@
 {
-  "_comment": "Fuentes orientativas para Reader. topic ∈ tech | ciencia | long-form. lang ayuda a Claude a decidir si traduce. Edita libremente: los feeds que fallen se omiten silenciosamente.",
+  "_comment": "Fuentes orientativas para Reader. topic ∈ tech | ciencia | long-form | artes (música clásica y artes escénicas). lang ayuda a Claude a decidir si traduce. Edita libremente: los feeds que fallen se omiten silenciosamente.",
   "feeds": [
     { "source": "Microsiervos",        "topic": "tech",      "lang": "es", "url": "https://www.microsiervos.com/index.xml" },
     { "source": "Xataka",              "topic": "tech",      "lang": "es", "url": "https://feeds.weblogssl.com/xataka2" },
@@ -25,6 +25,15 @@
     { "source": "Aeon",                "topic": "long-form", "lang": "en", "url": "https://aeon.co/feed.rss" },
     { "source": "The Guardian · Long Read", "topic": "long-form", "lang": "en", "url": "https://www.theguardian.com/news/series/the-long-read/rss" },
     { "source": "El País · Babelia",   "topic": "long-form", "lang": "es", "url": "https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/section/cultura/portada" },
-    { "source": "Jot Down",            "topic": "long-form", "lang": "es", "url": "https://www.jotdown.es/feed/" }
+    { "source": "Jot Down",            "topic": "long-form", "lang": "es", "url": "https://www.jotdown.es/feed/" },
+
+    { "source": "Scherzo",             "topic": "artes",     "lang": "es", "url": "https://scherzo.es/feed/" },
+    { "source": "Platea Magazine",     "topic": "artes",     "lang": "es", "url": "https://www.plateamagazine.com/feed" },
+    { "source": "Beckmesser",          "topic": "artes",     "lang": "es", "url": "https://www.beckmesser.com/feed/" },
+    { "source": "The Guardian · Classical", "topic": "artes", "lang": "en", "url": "https://www.theguardian.com/music/classicalmusicandopera/rss" },
+    { "source": "The Guardian · Stage", "topic": "artes",    "lang": "en", "url": "https://www.theguardian.com/stage/rss" },
+    { "source": "VAN Magazine",        "topic": "artes",     "lang": "en", "url": "https://van-magazine.com/mag/feed/" },
+    { "source": "Slipped Disc",        "topic": "artes",     "lang": "en", "url": "https://slippedisc.com/feed/" },
+    { "source": "Operawire",           "topic": "artes",     "lang": "en", "url": "https://operawire.com/feed/" }
   ]
 }

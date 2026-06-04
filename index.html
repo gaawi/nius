@@ -16,9 +16,10 @@
     --accent-tech:#5ac8fa;
     --accent-ciencia:#34c759;
     --accent-longform:#ffae42;
-    --paper:#f7f5f0;
-    --paper-ink:#16140f;
-    --paper-muted:#5d564a;
+    --accent-artes:#cf6a93;
+    --paper:#f4f1e9;
+    --paper-ink:#1b1813;
+    --paper-muted:#6f6450;
     --safe-t:env(safe-area-inset-top,0px);
     --safe-b:env(safe-area-inset-bottom,0px);
   }
@@ -96,14 +97,14 @@
     padding-top:120px;
   }
   .meta{
-    display:flex;align-items:center;gap:10px;
-    margin-bottom:12px;
-    font-size:12.5px;font-weight:700;
-    letter-spacing:.06em;text-transform:uppercase;
+    display:flex;align-items:center;gap:9px;
+    margin-bottom:11px;
+    font-size:11px;font-weight:700;
+    letter-spacing:.08em;text-transform:uppercase;
   }
   .meta .source{color:var(--accent)}
   .meta .dot{color:var(--muted);font-weight:400}
-  .meta .date{color:var(--muted);font-weight:600;letter-spacing:.02em;text-transform:none;font-size:12.5px}
+  .meta .date{color:var(--muted);font-weight:600;letter-spacing:.02em;text-transform:none;font-size:11px}
   .meta .topic{
     margin-left:auto;
     padding:3px 9px;border-radius:999px;
@@ -113,27 +114,29 @@
     backdrop-filter:blur(6px);
   }
   .card h2{
-    margin:0 0 12px;
-    font-size:clamp(27px,7.6vw,40px);
-    line-height:1.08;
+    margin:0 0 11px;
+    font-family:"New York","Iowan Old Style","Palatino Linotype",Georgia,"Times New Roman",serif;
+    font-size:clamp(22px,6.2vw,33px);
+    line-height:1.1;
     font-weight:800;
-    letter-spacing:-.018em;
+    letter-spacing:-.012em;
     text-wrap:balance;
     text-shadow:0 1px 24px rgba(0,0,0,.45);
   }
   .card .dek{
     margin:0;
-    font-size:clamp(15px,4.2vw,18px);
+    font-family:"New York","Iowan Old Style","Palatino Linotype",Georgia,"Times New Roman",serif;
+    font-size:clamp(13px,3.5vw,15px);
     line-height:1.45;
-    color:rgba(245,243,238,.92);
+    color:rgba(245,243,238,.9);
     display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;
     overflow:hidden;
-    max-width:38ch;
+    max-width:40ch;
   }
   .card .cue{
-    margin-top:18px;
+    margin-top:16px;
     display:inline-flex;align-items:center;gap:7px;
-    font-size:13px;font-weight:600;color:rgba(245,243,238,.7);
+    font-size:12px;font-weight:600;color:rgba(245,243,238,.7);
   }
   .card .cue svg{width:15px;height:15px}
 
@@ -173,99 +176,132 @@
   }
   .progress i.on{background:var(--accent);width:18px;border-radius:3px}
 
-  /* ───────────────────────── article reader ───────────────────────── */
+  /* ───────────────────── article reader (periódico) ───────────────────── */
   .reader{
     position:fixed;inset:0;z-index:50;
     background:var(--paper);color:var(--paper-ink);
+    background-image:
+      repeating-linear-gradient(0deg, rgba(0,0,0,.012) 0 2px, transparent 2px 4px);
     transform:translateY(101%);
     transition:transform .42s cubic-bezier(.22,1,.36,1);
     visibility:hidden;
   }
   .reader.open{transform:translateY(0);visibility:visible}
 
+  /* el carril de páginas: snap nativo, una página por pantalla */
   .pages{
+    display:flex;
     height:100dvh;
-    column-width:100vw;
-    column-gap:2.5rem;
-    overflow-x:auto;
-    overflow-y:hidden;
+    overflow-x:auto;overflow-y:hidden;
     scroll-snap-type:x mandatory;
     scroll-behavior:smooth;
     -webkit-overflow-scrolling:touch;
-    padding:calc(78px + var(--safe-t)) 26px calc(40px + var(--safe-b));
-    text-align:justify;
-    -webkit-hyphens:auto;hyphens:auto;
+    overscroll-behavior-x:contain;
   }
   .pages::-webkit-scrollbar{display:none}
   .pages{scrollbar-width:none}
 
-  .pages > *{break-inside:avoid-column}
-  .pages .lead{break-inside:avoid-column}
-
-  .a-source{
-    font-size:12.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
-    color:var(--accent);margin:0 0 10px;
-  }
-  .pages h1{
-    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    font-size:clamp(26px,7vw,34px);
-    line-height:1.12;font-weight:800;letter-spacing:-.02em;
-    margin:0 0 14px;text-wrap:balance;
-  }
-  .a-byline{
-    font-size:13px;color:var(--paper-muted);margin:0 0 20px;
-    padding-bottom:18px;border-bottom:1px solid rgba(0,0,0,.1);
-  }
-  .a-hero{
-    width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:14px;
-    margin:0 0 22px;background:#e7e3da;
-  }
-  .a-hero.failed{display:none}
-  .pages p{
+  .page{
+    flex:0 0 100%;width:100%;height:100dvh;
+    box-sizing:border-box;
+    scroll-snap-align:start;scroll-snap-stop:always;
+    overflow:hidden;
+    padding:calc(50px + var(--safe-t)) 6.4vw calc(30px + var(--safe-b));
+    column-count:2;column-gap:5vw;column-fill:auto;
+    column-rule:1px solid rgba(0,0,0,.18);
     font-family:"New York","Iowan Old Style","Palatino Linotype",Georgia,"Times New Roman",serif;
-    font-size:19px;line-height:1.62;margin:0 0 1.05em;
-    color:#26221b;
+    color:#23201a;
+    font-size:13.5px;line-height:1.5;
+    text-align:justify;-webkit-hyphens:auto;hyphens:auto;
+    word-spacing:-.4px;
   }
-  .pages p.lead{font-size:21px;line-height:1.5;color:#1a1712;font-weight:500}
-  .a-orig{
-    display:inline-flex;align-items:center;gap:8px;
-    margin-top:8px;padding:13px 20px;border-radius:999px;
-    background:var(--paper-ink);color:var(--paper);
-    font-weight:700;font-size:15px;text-decoration:none;
+  @media (min-width:680px){ .page{column-count:3;font-size:14px;padding-left:4vw;padding-right:4vw} }
+  @media (min-width:1100px){ .page{column-count:4} }
+
+  .folio{
+    column-span:all;
+    display:flex;justify-content:space-between;align-items:baseline;gap:10px;
+    font:800 9.5px/1 -apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif;
+    letter-spacing:.18em;text-transform:uppercase;color:#9a8f7c;
+    border-bottom:2px solid #1b1813;padding-bottom:6px;margin-bottom:13px;
     -webkit-hyphens:none;hyphens:none;
   }
-  .a-orig svg{width:16px;height:16px}
+  .folio .pg{letter-spacing:.1em}
+
+  .masthead{column-span:all;margin-bottom:6px;break-after:avoid}
+  .a-kicker{
+    font:800 10.5px/1 -apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--accent);
+    margin:0 0 7px;-webkit-hyphens:none;hyphens:none;
+  }
+  .page h1{
+    font-family:"New York","Iowan Old Style",Georgia,"Times New Roman",serif;
+    font-weight:800;font-size:clamp(23px,6.6vw,30px);line-height:1.07;
+    letter-spacing:-.012em;margin:0 0 7px;text-align:left;text-wrap:balance;
+    -webkit-hyphens:none;hyphens:none;
+  }
+  .a-byline{
+    font:600 11px/1.3 -apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif;
+    color:var(--paper-muted);margin:0 0 12px;
+    border-bottom:1px solid rgba(0,0,0,.16);padding-bottom:11px;
+    -webkit-hyphens:none;hyphens:none;
+  }
+  .a-hero{
+    column-span:all;
+    width:100%;height:28vh;object-fit:cover;
+    margin:0 0 13px;background:#e4ded0;
+    filter:grayscale(.18) contrast(1.03);
+  }
+  .a-hero.failed{display:none}
+
+  .page p{margin:0 0 .5em;text-indent:1.05em}
+  .page p.lead{text-indent:0}
+  .page p.lead::first-letter{
+    float:left;font-weight:800;font-size:3em;line-height:.76;
+    padding:.04em .08em 0 0;color:#1b1813;
+  }
+  .a-orig{
+    column-span:all;
+    display:flex;align-self:flex-start;width:max-content;max-width:100%;
+    align-items:center;gap:7px;
+    margin:12px 0 0;padding:10px 17px;border-radius:2px;
+    background:#1b1813;color:var(--paper);
+    font:700 12.5px/1 -apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif;
+    text-decoration:none;-webkit-hyphens:none;hyphens:none;
+  }
+  .a-orig svg{width:14px;height:14px}
   .a-end{
-    margin-top:26px;font-size:12.5px;color:var(--paper-muted);
-    -webkit-hyphens:none;hyphens:none;text-align:left;
+    column-span:all;
+    margin:13px 0 0;font:italic 11px/1.4 Georgia,serif;color:#8a7f6c;
+    text-align:left;-webkit-hyphens:none;hyphens:none;
   }
 
   .back{
     position:fixed;z-index:60;
-    top:calc(16px + var(--safe-t));left:16px;
-    width:44px;height:44px;border:none;border-radius:50%;
+    top:calc(14px + var(--safe-t));left:14px;
+    width:42px;height:42px;border:none;border-radius:50%;
     display:none;align-items:center;justify-content:center;
-    background:rgba(255,255,255,.55);
-    color:#16140f;
+    background:rgba(247,244,236,.72);
+    color:#1b1813;
     backdrop-filter:blur(18px) saturate(160%);
     -webkit-backdrop-filter:blur(18px) saturate(160%);
     box-shadow:0 2px 14px rgba(0,0,0,.18);
     cursor:pointer;
   }
   .reader.open ~ .back,.back.show{display:flex}
-  .back svg{width:21px;height:21px}
+  .back svg{width:20px;height:20px}
 
   .pagenum{
     position:fixed;z-index:55;display:none;
-    bottom:calc(18px + var(--safe-b));left:50%;transform:translateX(-50%);
-    font-size:12px;font-weight:700;letter-spacing:.04em;
+    bottom:calc(14px + var(--safe-b));left:50%;transform:translateX(-50%);
+    font:700 10.5px/1 -apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif;
+    letter-spacing:.14em;text-transform:uppercase;
     color:var(--paper-muted);
-    background:rgba(255,255,255,.6);
+    background:rgba(247,244,236,.78);
     padding:5px 12px;border-radius:999px;
     backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
     -webkit-hyphens:none;hyphens:none;
   }
-  .reader.open .pagenum{display:block}
 
   /* ───────────────────────── states ───────────────────────── */
   .state{
@@ -321,6 +357,9 @@
     ciencia:   { label:"ciencia",   accent:"var(--accent-ciencia)" },
     "long-form":{ label:"long-form", accent:"var(--accent-longform)" },
     longform:  { label:"long-form", accent:"var(--accent-longform)" },
+    artes:     { label:"artes",     accent:"var(--accent-artes)" },
+    musica:    { label:"artes",     accent:"var(--accent-artes)" },
+    escena:    { label:"artes",     accent:"var(--accent-artes)" },
   };
 
   const $ = (id) => document.getElementById(id);
@@ -420,38 +459,52 @@
     return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   }
 
-  // ── article reader ──
-  function openReader(index){
-    const item = items[index];
-    if (!item) return;
-    pagesEl.scrollLeft = 0;
+  // ── article reader (maquetación tipo periódico, paginada) ──
+  let currentIndex = -1;
+
+  function fmtLongDate(iso){
+    const d = new Date(iso);
+    if (isNaN(d)) return "";
+    return `${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
+  }
+
+  function newPage(dateStr){
+    const pg = document.createElement("section");
+    pg.className = "page";
+    const folio = document.createElement("div");
+    folio.className = "folio";
+    folio.innerHTML = `<span>Reader</span><span class="pg"></span><span>${esc(dateStr||"")}</span>`;
+    pg.appendChild(folio);
+    return pg;
+  }
+
+  // distribuye los bloques en páginas de ancho completo: cuando el contenido
+  // desborda el número de columnas de la página, se abre una página nueva.
+  function paginate(item){
     pagesEl.innerHTML = "";
-    readerEl.style.setProperty("--accent", topicMeta(item.topic).accent);
+    const dateStr = fmtLongDate(item.published);
 
-    const src = document.createElement("p");
-    src.className = "a-source";
-    src.textContent = item.source || "";
-    pagesEl.appendChild(src);
+    const blocks = [];
 
+    const mast = document.createElement("div");
+    mast.className = "masthead";
+    const kick = document.createElement("p");
+    kick.className = "a-kicker";
+    kick.textContent = item.source || "";
+    mast.appendChild(kick);
     const h1 = document.createElement("h1");
     h1.textContent = item.title || "";
-    pagesEl.appendChild(h1);
-
+    mast.appendChild(h1);
     const by = document.createElement("p");
     by.className = "a-byline";
     const bits = [];
-    if (item.published){
-      const d = new Date(item.published);
-      if (!isNaN(d)) bits.push(`${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`);
-    }
+    if (dateStr) bits.push(dateStr);
     if (item.author) bits.push(item.author);
     by.textContent = bits.join(" · ") || (item.source || "");
-    pagesEl.appendChild(by);
+    mast.appendChild(by);
+    blocks.push(mast);
 
-    if (item.image){
-      const hero = makeImg(item.image, "a-hero");
-      pagesEl.appendChild(hero);
-    }
+    if (item.image) blocks.push(makeImg(item.image, "a-hero"));
 
     const body = Array.isArray(item.body) && item.body.length
       ? item.body
@@ -460,30 +513,64 @@
       const p = document.createElement("p");
       if (i === 0) p.className = "lead";
       p.textContent = para;
-      pagesEl.appendChild(p);
+      blocks.push(p);
     });
 
     if (item.url){
       const a = document.createElement("a");
       a.className = "a-orig";
-      a.href = item.url;
-      a.target = "_blank";
-      a.rel = "noopener noreferrer";
+      a.href = item.url; a.target = "_blank"; a.rel = "noopener noreferrer";
       a.innerHTML = `Leer el original <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>`;
-      pagesEl.appendChild(a);
+      blocks.push(a);
     }
-
     const end = document.createElement("p");
     end.className = "a-end";
     end.textContent = "Resumen y traducción al español curados por Claude. El texto íntegro está en la fuente original.";
-    pagesEl.appendChild(end);
+    blocks.push(end);
 
+    let page = newPage(dateStr);
+    pagesEl.appendChild(page);
+    const contentCount = (pg) => pg.querySelectorAll(":scope > :not(.folio)").length;
+
+    for (const b of blocks){
+      page.appendChild(b);
+      if (page.scrollWidth > page.clientWidth + 2){
+        if (contentCount(page) <= 1){
+          // un solo bloque no cabe ni solo: lo dejamos y seguimos en otra página
+          page = newPage(dateStr);
+          pagesEl.appendChild(page);
+        } else {
+          page.removeChild(b);
+          page = newPage(dateStr);
+          pagesEl.appendChild(page);
+          page.appendChild(b);
+        }
+      }
+    }
+    // descarta una última página que solo tenga el folio
+    const last = pagesEl.lastElementChild;
+    if (pagesEl.children.length > 1 && last && contentCount(last) === 0) pagesEl.removeChild(last);
+
+    const total = pagesEl.children.length;
+    [...pagesEl.children].forEach((pg, i) => {
+      const tag = pg.querySelector(".folio .pg");
+      if (tag) tag.textContent = total > 1 ? `${i+1} / ${total}` : "";
+    });
+  }
+
+  function openReader(index){
+    const item = items[index];
+    if (!item) return;
+    currentIndex = index;
+    readerEl.style.setProperty("--accent", topicMeta(item.topic).accent);
     readerEl.classList.add("open");
     readerEl.setAttribute("aria-hidden","false");
     backEl.classList.add("show");
+    document.body.style.overflow = "hidden";
+    paginate(item);
+    pagesEl.scrollLeft = 0;
     updatePageNum();
     if (location.hash !== "#article") history.pushState({reader:true}, "", "#article");
-    document.body.style.overflow = "hidden";
   }
 
   function closeReader(){
@@ -491,11 +578,13 @@
     readerEl.setAttribute("aria-hidden","true");
     backEl.classList.remove("show");
     pagenumEl.style.display = "none";
+    document.body.style.overflow = "";
+    currentIndex = -1;
   }
 
   function updatePageNum(){
     if (!readerEl.classList.contains("open")) return;
-    const total = Math.max(1, Math.round(pagesEl.scrollWidth / pagesEl.clientWidth));
+    const total = pagesEl.children.length;
     const cur = Math.round(pagesEl.scrollLeft / pagesEl.clientWidth) + 1;
     pagenumEl.textContent = total > 1 ? `${Math.min(cur,total)} / ${total}` : "";
     pagenumEl.style.display = total > 1 ? "block" : "none";
@@ -537,6 +626,17 @@
     cancelAnimationFrame(rafP);
     rafP = requestAnimationFrame(updatePageNum);
   }, {passive:true});
+  // recompone las páginas al girar el móvil / cambiar de tamaño
+  let resizeT;
+  window.addEventListener("resize", () => {
+    if (!readerEl.classList.contains("open") || currentIndex < 0) return;
+    clearTimeout(resizeT);
+    resizeT = setTimeout(() => {
+      paginate(items[currentIndex]);
+      pagesEl.scrollLeft = 0;
+      updatePageNum();
+    }, 200);
+  });
   window.addEventListener("keydown", (e) => {
     if (readerEl.classList.contains("open")){
       if (e.key === "Escape") backEl.click();

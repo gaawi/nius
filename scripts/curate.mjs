@@ -136,7 +136,7 @@ async function collectCandidates(feeds) {
           author: item.creator || item.author || "",
           published: !isNaN(ts) ? new Date(ts).toISOString() : "",
           ts: isNaN(ts) ? 0 : ts,
-          snippet: snippetRaw.slice(0, 1400),
+          snippet: snippetRaw.slice(0, 3600),
           image: imageFromItem(item),
         });
       }
@@ -172,9 +172,9 @@ async function collectCandidates(feeds) {
 
 function capByTopic(list, cap) {
   if (list.length <= cap) return list;
-  const buckets = { tech: [], ciencia: [], "long-form": [] };
+  const buckets = { tech: [], ciencia: [], "long-form": [], artes: [] };
   for (const c of list) (buckets[c.topic] || (buckets[c.topic] = [])).push(c);
-  const order = ["tech", "ciencia", "long-form"];
+  const order = ["tech", "ciencia", "long-form", "artes"];
   const out = [];
   let i = 0;
   while (out.length < cap) {
@@ -194,9 +194,9 @@ function capByTopic(list, cap) {
 const SYSTEM_PROMPT = `Eres el editor de "Reader", una lista diaria de lectura personal. Tu lector es una persona curiosa e informada. Curas, no resumes prensa.
 
 PERFIL DEL LECTOR
-- Temas: tech (IA, software, cultura de internet), ciencia (física, biología, espacio, clima, neurociencia) y long-form (ensayo, ideas, libros, crítica).
-- Mezcla orientativa: ~40 % tech, ~35 % ciencia, ~25 % long-form. Es una guía, no una cuota: prioriza SIEMPRE lo que de verdad merezca la pena hoy.
-- Tono que busca: reportaje original, análisis profundo, ensayo bien escrito. Piezas para leer enteras.
+- Temas: tech (IA, software, cultura de internet), ciencia (física, biología, espacio, clima, neurociencia), long-form (ensayo, ideas, libros, crítica) y artes (música clásica, ópera, danza, teatro y artes escénicas: estrenos, crítica, reportaje y entrevistas de fondo).
+- Mezcla orientativa: ~35 % tech, ~30 % ciencia, ~20 % long-form, ~15 % artes. Es una guía, no una cuota: prioriza SIEMPRE lo que de verdad merezca la pena hoy.
+- Tono que busca: reportaje original, análisis profundo, ensayo bien escrito, crítica con criterio. Piezas para leer enteras.
 
 QUÉ RECHAZAR sin contemplaciones
 - Clickbait, sensacionalismo, titulares "X anuncia Y" sin análisis.
@@ -212,12 +212,12 @@ ESCRITURA (español de España, natural e idiomático)
 - Traduce al castellano de España todo lo que esté en otro idioma. NO traduzcas nombres propios, nombres de producto ni citas que pierdan sentido al traducirse.
 - "title": titular en español, claro y sin clickbait (máx. ~90 caracteres).
 - "summary": 2–3 frases (máx. ~280 caracteres) que dan ganas de leer y dicen de qué va de verdad. Sin "en este artículo".
-- "body": 3 a 6 párrafos breves que destilen la pieza: el qué, el porqué importa y el matiz o ángulo interesante. Es un digest original tuyo en español a partir del extracto disponible, NO una traducción literal ni una copia. No inventes datos que no estén respaldados por el extracto; si el extracto es escaso, sé más conciso.
-- "topic": uno de exactamente "tech", "ciencia" o "long-form".
+- "body": un artículo desarrollado y completo, NO un resumen telegráfico. Escribe entre 6 y 10 párrafos (idealmente 7–9) que cuenten la historia entera: contexto y antecedentes, el qué con sus detalles concretos, el cómo, las cifras y datos relevantes del extracto, las distintas voces o posturas, las implicaciones y el matiz o ángulo más interesante. Que se lea como una pieza periodística que se basta a sí misma, con párrafos de varias frases, no de una sola. Es una reescritura original tuya en español a partir del material disponible, NO una traducción literal ni una copia. Fundamental: no inventes datos, cifras, citas ni hechos concretos que no estén respaldados por el extracto; cuando el extracto sea escaso, desarrolla el contexto y las implicaciones de forma honesta (sin fabricar especificidades) hasta dar una pieza completa.
+- "topic": uno de exactamente "tech", "ciencia", "long-form" o "artes".
 
 SALIDA
 Devuelve EXCLUSIVAMENTE un objeto JSON válido, sin texto antes ni después, sin markdown, con esta forma:
-{"items":[{"id":<número del candidato>,"topic":"tech|ciencia|long-form","title":"…","summary":"…","body":["párrafo 1","párrafo 2","…"]}]}`;
+{"items":[{"id":<número del candidato>,"topic":"tech|ciencia|long-form|artes","title":"…","summary":"…","body":["párrafo 1","párrafo 2","…"]}]}`;
 
 function buildUserPrompt(cands) {
   const today = new Date().toISOString().slice(0, 10);
@@ -245,7 +245,7 @@ async function curateWithClaude(cands) {
   const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
   const msg = await client.messages.create({
     model: MODEL,
-    max_tokens: 8000,
+    max_tokens: 16000,
     system: SYSTEM_PROMPT,
     messages: [{ role: "user", content: buildUserPrompt(cands) }],
   });
@@ -308,7 +308,7 @@ async function main() {
       source: c.source,
       author: c.author || "",
       url: c.url,
-      topic: ["tech", "ciencia", "long-form"].includes(sel.topic) ? sel.topic : c.topic,
+      topic: ["tech", "ciencia", "long-form", "artes"].includes(sel.topic) ? sel.topic : c.topic,
       published: c.published,
       image: c.image || null,
       title: (sel.title || c.title).trim(),
